@@ -1,5 +1,4 @@
 @import './variables.css';
-@import './responsive.css';
 
 /* Global reset (kept minimal) */
 * {
@@ -3243,4 +3242,5 @@ button, a, .playlist-card, .songs-contain, .artist-contain {
 }
 
 
+@import './responsive.css';
 
