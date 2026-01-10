@@ -33,7 +33,7 @@ const Home = () => {
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <div className="hero-logo">
-            <div className="jamify-logo"></div>
+            <img src="/logo.png" alt="Music Vibe" className="hero-logo-img" />
           </div>
 
           <h1 className="hero-title">

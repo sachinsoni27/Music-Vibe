@@ -172,6 +172,16 @@ const handlePlaylistSongClick = (song, index) => {
     setPlaylistAndPlay(trendingSongs, index)
   }
 
+  const playlistsToRender = userPlaylists?.items ?? userPlaylists;
+
+  if (!playlistsToRender || playlistsToRender.length === 0) {
+    return (
+      <div style={{ color: "white", padding: "40px" }}>
+        Loading playlists...
+      </div>
+    );
+  }
+
   return (
     <>
       {/* Playlists Section */}
@@ -185,7 +195,7 @@ const handlePlaylistSongClick = (song, index) => {
           </div>
 
           <div className="playlist-grid">
-            {userPlaylists && userPlaylists.map((playlist, index) => (
+            {playlistsToRender?.map((playlist, index) => (
               <div key={playlist.id} className="playlist-wrapper" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div
                   className={`playlist-card ${expandedPlaylist === playlist.id ? 'expanded' : ''}`}
