@@ -15,7 +15,27 @@
   --bp-laptop-min: 769px;
   --bp-laptop-max: 1024px;
   --bp-desktop-min: 1025px;
+  --gutter: 1rem;
+  --content-max: 1200px;
 }
+
+/* Mobile-first helpers (small, additive):
+   - Use clamp() for fluid typography
+   - Ensure images and iframes are responsive
+   - Provide a small utility container class for consistent padding
+*/
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+
+.container { width: 100%; padding: calc(var(--gutter) * 0.75); margin: 0 auto; max-width: var(--content-max); }
+
+:root {
+  --h1-min: 1.6rem; --h1-max: 3.6rem;
+}
+
+.h1-fluid { font-size: clamp(var(--h1-min), 4vw, var(--h1-max)); }
 
 /* -------------------- Mobile (<=480px) -------------------- */
 @media (max-width: 480px) {
