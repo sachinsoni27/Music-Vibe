@@ -1,0 +1,166 @@
+/* Responsive helpers scoped to existing containers
+   Breakpoints (strict):
+   - Mobile: <= 480px
+   - Tablet: 481px - 768px
+   - Small Laptop: 769px - 1024px
+   - Desktop: >= 1025px (no changes)
+
+   Rules are additive and scoped to avoid global side-effects.
+*/
+
+:root {
+  --bp-mobile-max: 480px;
+  --bp-tablet-min: 481px;
+  --bp-tablet-max: 768px;
+  --bp-laptop-min: 769px;
+  --bp-laptop-max: 1024px;
+  --bp-desktop-min: 1025px;
+}
+
+/* -------------------- Mobile (<=480px) -------------------- */
+@media (max-width: 480px) {
+  /* Navbar: stack and avoid overflow */
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 14px;
+    gap: 10px;
+    height: auto;
+  }
+  nav .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 6px;
+    flex-wrap: wrap;
+  }
+  nav #links {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+  nav #userSection {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Hero: stack and center */
+  .hero-section {
+    align-items: flex-start;
+    padding-top: 80px; /* keep space for fixed nav */
+    min-height: 70vh;
+  }
+  .hero-content {
+    padding: 20px;
+    max-width: 92%;
+  }
+  .jamify-logo { width: 80px; height: 80px; }
+  .hero-title { font-size: 2rem; line-height: 1.05; }
+  .hero-subtitle { font-size: 1rem; }
+  .hero-stats { flex-direction: column; gap: 18px; margin: 30px 0; }
+  .stat-box { width: 100%; max-width: 420px; padding: 18px; }
+  .hero-buttons { flex-direction: column; gap: 12px; width: 100%; }
+  .btn-primary, .btn-secondary { width: 100%; padding: 14px 20px; font-size: 1rem; }
+
+  /* Sections spacing */
+  .section-container { padding: 40px 18px; }
+  .section-title { font-size: 1.5rem; }
+  .section-subtitle { font-size: 0.95rem; }
+
+  /* Playlists: 1 card per row */
+  .playlist-grid { grid-template-columns: repeat(1, 1fr) !important; gap: 18px; }
+  .playlist-image { height: 150px !important; }
+  .playlist-info h3 { font-size: 1.1rem; }
+
+  /* Artists & Songs: 2 columns where used */
+  .artist-sec { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .songs-sec { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  /* Trending page: center & scale down headings */
+  .trending-hero-title, .trending-hero-title h1 { font-size: 2rem; text-align: center; }
+  .trending-hero-subtitle { font-size: 0.95rem; text-align: center; }
+  .trending-hero { padding-top: 70px; }
+
+  /* Feedback / forms: full width, comfortable padding */
+  .form-card, .contact-form-section .form-card, .auth-form { width: 100%; padding: 18px; }
+  .form-group input, .form-group textarea, .form-group select { font-size: 1rem; padding: 12px; }
+
+  /* Contact page: stack columns */
+  .contact-content { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .contact-info-section { order: 2; }
+  .contact-form-section { order: 1; }
+
+  /* Footer: center content & stack columns */
+  .footer-content-modern { grid-template-columns: 1fr !important; padding: 40px 18px !important; gap: 22px; }
+  .footer-brand, .footer-links-section, .footer-contact-section, .footer-newsletter { text-align: center; }
+  .social-links-modern { justify-items: center; }
+  .footer-logo h2 { font-size: 1.6rem; }
+}
+
+/* -------------------- Tablet (481px - 768px) -------------------- */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Navbar: allow compact two-line layout */
+  nav { padding: 8px 18px; height: auto; gap: 8px; }
+  nav .logo { height: 50px; width: 50px; }
+  nav #links { font-size: 1rem; padding: 6px 10px; }
+  nav .nav-links { gap: 8px; }
+
+  /* Hero adjustments */
+  .hero-content { padding: 28px; max-width: 720px; }
+  .jamify-logo { width: 120px; height: 120px; }
+  .hero-title { font-size: 2.8rem; }
+  .hero-subtitle { font-size: 1.15rem; }
+  .hero-stats { gap: 28px; }
+  .hero-buttons { gap: 12px; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+  /* Playlists: 2 cards per row */
+  .playlist-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 22px; }
+  .playlist-image { height: 200px; }
+
+  /* Artists & Songs */
+  .artist-sec { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .songs-sec { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+
+  /* Feedback / Contact: stacked but narrower */
+  .contact-content { grid-template-columns: 1fr; gap: 20px; }
+  .form-card { padding: 20px; }
+
+  /* Footer: two-column fallback */
+  .footer-content-modern { grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px; }
+}
+
+/* -------------------- Small Laptop (769px - 1024px) -------------------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Navbar minor tweaks */
+  nav { padding: 12px 24px; }
+  nav #links { font-size: 1.05rem; padding: 8px 12px; }
+
+  /* Hero scaling */
+  .hero-content { padding: 34px; max-width: 900px; }
+  .hero-title { font-size: 3.6rem; }
+  .jamify-logo { width: 160px; height: 160px; }
+
+  /* Playlists: 3 cards per row (keeps desktop look but slightly denser) */
+  .playlist-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 26px; }
+  .playlist-image { height: 240px; }
+
+  /* Trending: center & keep readable sizes */
+  .trending-hero-title { font-size: 3.2rem; }
+  .songs-sec { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+  /* Contact: if two-column layout is used, keep columns side-by-side but ensure wrapping */
+  .contact-content { grid-template-columns: 1fr 420px; gap: 20px; }
+  .contact-form-section { min-width: 0; }
+}
+
+/* -------------------- Utilities to avoid horizontal scroll on small screens -------------------- */
+@media (max-width: 1024px) {
+  html, body, #root { overflow-x: hidden; }
+  .section-container { max-width: 100%; box-sizing: border-box; }
+}
+
+/* Small fixes to ensure icons and tiles keep square aspect and do not stretch */
+.social-links-modern .social-btn { width: 96px; height: 96px; }
+@media (max-width: 480px) { .social-links-modern .social-btn { width: 72px; height: 72px; } }
+
+/* End of responsive.css */
