@@ -1,3 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Playlist from "./pages/Playlist";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/playlists" element={<Playlist />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MusicProvider } from './context/MusicContext'
 import Home from './pages/Home'

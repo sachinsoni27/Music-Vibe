@@ -28,8 +28,16 @@ const Home = () => {
       {/* Hero Section */}
       <div className="hero-section">
         <div className="bg-video">
-          <video src="/Music_Website_Intro_Video_Creation.mp4" autoPlay muted loop></video>
-        </div>
+            <video
+              src="/Music_Website_Intro_Video_Creation.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/background.png"
+              onError={(e) => { e.currentTarget.style.display = 'none' }}
+            />
+          </div>
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <div className="hero-logo">
