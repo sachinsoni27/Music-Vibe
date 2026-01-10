@@ -1,0 +1,107 @@
+:root{
+  --modal-bg: rgba(10,11,15,0.85);
+  --card-bg: rgba(255,255,255,0.03);
+  --accent: var(--color-primary);
+}
+
+.playlist-modal-backdrop{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+  z-index: 1500;
+  padding: 20px;
+}
+
+.playlist-modal{
+  width: 520px;
+  max-width: 100%;
+  background: linear-gradient(180deg, var(--modal-bg), rgba(0,0,0,0.7));
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(2,6,23,0.7);
+  overflow: hidden;
+}
+
+.playlist-modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+
+.playlist-modal-header h3{
+  color:#fff;
+  margin:0;
+  font-size:1.15rem;
+}
+
+.modal-close{
+  background:none;
+  border:none;
+  color:rgba(255,255,255,0.7);
+  font-size:1.6rem;
+  cursor:pointer;
+}
+
+.playlist-modal-body{
+  padding:18px 20px 24px 20px;
+}
+
+.modal-song{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-song img{
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+.modal-song .muted{
+  color:rgba(255,255,255,0.6);
+  font-size:0.9rem;
+}
+
+.playlist-list{
+  max-height:240px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.playlist-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 12px;
+  background:var(--card-bg);
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.playlist-meta{display:flex;flex-direction:column}
+.playlist-name{color:#fff;font-weight:700}
+.playlist-count{color:rgba(255,255,255,0.6);font-size:0.9rem}
+
+.playlist-create{display:flex;gap:8px;margin-top:8px}
+.playlist-create input{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:#fff}
+
+.btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.btn.small{padding:6px 10px;font-size:0.95rem}
+
+.playlist-message{margin-top:10px;color:var(--accent);font-weight:700;text-align:center}
+
+@media (max-width:520px){
+  .playlist-modal{width:100%}
+}

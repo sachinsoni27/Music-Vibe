@@ -1,0 +1,163 @@
+import React, { useEffect, useState } from 'react'
+import '../styles/index.css'
+import '../styles/jamendo.css' 
+import { useMusic } from '../context/MusicContext'
+
+const JamendoTracks = () => {
+  const [tracks, setTracks] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [query, setQuery] = useState('')
+  const [addedMsg, setAddedMsg] = useState(null)
+
+  const { userPlaylists, addSongToPlaylist } = useMusic()
+
+  // Fetch helper that supports an optional search query
+  const fetchTracks = async (search = '') => {
+    const controller = new AbortController()
+    try {
+      setLoading(true)
+      setError(null)
+      const q = search ? `&search=${encodeURIComponent(search)}` : ''
+      const res = await fetch(
+        `https://api.jamendo.com/v3.0/tracks?client_id=364ed607&format=json&limit=10${q}`,
+        { signal: controller.signal }
+      )
+      if (!res.ok) throw new Error(`API error: ${res.status}`)
+      const data = await res.json()
+      // Jamendo returns results array
+      setTracks(data.results || [])
+    } catch (err) {
+      if (err.name !== 'AbortError') setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+    return () => controller.abort()
+  }
+
+  useEffect(() => {
+    // initial load: recent tracks
+    fetchTracks()
+    // no cleanup needed for top-level initial load
+  }, [])
+
+  if (loading) return <div className="jamendo-section">Loading Jamendo tracks...</div>
+  if (error) return <div className="jamendo-section">Error loading Jamendo tracks: {error}</div>
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const q = query.trim()
+    if (q) fetchTracks(q)
+    else fetchTracks()
+  }
+
+  return (
+    <div className="jamendo-section">
+      <div className="section-header">
+        <h3 className="section-title"><i className="fas fa-compact-disc"></i> Jamendo Picks</h3>
+        <p className="section-subtitle">{query ? `Results for \"${query}\"` : '10 recent tracks from Jamendo (Client ID: 364ed607)'}</p>
+      </div>
+
+      <form className="jamendo-search" onSubmit={handleSubmit} aria-label="Jamendo search">
+        <input
+          type="search"
+          placeholder="Search songs or artists..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="jamendo-search-input"
+          aria-label="Search Jamendo tracks"
+        />
+        <button type="submit" className="jamendo-search-btn">Search</button>
+        {query && (
+          <button
+            type="button"
+            className="jamendo-clear-btn"
+            onClick={() => { setQuery(''); fetchTracks(); }}
+          >
+            Clear
+          </button>
+        )}
+      </form>
+
+      {tracks.length === 0 ? (
+        <div className="jamendo-no-results">No tracks found{query ? ` for "${query}"` : ''}.</div>
+      ) : (
+        <div className="jamendo-tracks">
+          {tracks.map((track) => {
+            const image = track.album_image || track.album?.image || track.artist_image || track.image || ''
+            return (
+              <div key={track.id} className="jamendo-track">
+                <div className="jamendo-track-left">
+                  <img
+                    src={image || '/placeholder-track.png'}
+                    alt={track.name}
+                    className="jamendo-artwork"
+                    onError={(e) => { e.target.onerror = null; e.target.src = '/placeholder-track.png' }}
+                  />
+                  <div className="jamendo-track-info">
+                    <h4 className="jamendo-track-name">{track.name}</h4>
+                    <p className="jamendo-artist">{track.artist_name}</p>
+                  </div>
+                </div>
+
+                <div className="jamendo-track-right">
+                  <audio controls preload="none" className="jamendo-audio" src={track.audio}>
+                    Your browser does not support the audio element.
+                  </audio>
+
+                  <div className="jamendo-add">
+                    <button
+                      className="jamendo-add-btn"
+                      onClick={() => {
+                        if (!userPlaylists || userPlaylists.length === 0) {
+                          alert('No playlists found. Create a playlist first in the Playlists section.')
+                          return
+                        }
+
+                        if (userPlaylists.length === 1) {
+                          addSongToPlaylist(userPlaylists[0].id, {
+                            title: track.name,
+                            artist: track.artist_name,
+                            audio: track.audio,
+                            image: image
+                          })
+                          setAddedMsg(`Added to ${userPlaylists[0].name}`)
+                          setTimeout(() => setAddedMsg(null), 2000)
+                          return
+                        }
+
+                        // Multiple playlists available — ask user to choose via prompt
+                        const names = userPlaylists.map((p, i) => `${i + 1}: ${p.name}`).join('\n')
+                        const input = window.prompt(`Choose playlist number to add:\n${names}`)
+                        const idx = parseInt(input)
+                        if (!isNaN(idx) && idx >= 1 && idx <= userPlaylists.length) {
+                          const pl = userPlaylists[idx - 1]
+                          addSongToPlaylist(pl.id, {
+                            title: track.name,
+                            artist: track.artist_name,
+                            audio: track.audio,
+                            image: image
+                          })
+                          setAddedMsg(`Added to ${pl.name}`)
+                          setTimeout(() => setAddedMsg(null), 2000)
+                        }
+                      }}
+                      title="Add to playlist"
+                    >
+                      <i className="fas fa-plus"></i> Add
+                    </button>
+                    {addedMsg && <div className="jamendo-added-msg">{addedMsg}</div>}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+
+    </div>
+  )
+}
+
+export default JamendoTracks

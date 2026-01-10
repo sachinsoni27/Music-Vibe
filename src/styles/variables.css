@@ -1,0 +1,29 @@
+/* Global design tokens and variables */
+:root {
+  /* Colors */
+  --color-bg: #0a0a0a;
+  --bg-gradient: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  --color-primary: #0d76c7; /* rgb(13,118,199) */
+  --color-primary-dark: #0a5fa0; /* rgb(10,95,160) */
+  --color-accent: #4facfe;
+  --color-clerk: #8b5cf6;
+  --text-color: #ffffff;
+  --muted-70: rgba(255,255,255,0.7);
+  --glass: rgba(255,255,255,0.05);
+  --glass-2: rgba(255,255,255,0.1);
+
+  /* Spacing / radii */
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Layout */
+  --container-max-width: 1400px;
+
+  /* Transitions */
+  --transition-fast: 0.25s ease;
+  --transition-medium: 0.35s ease;
+}
