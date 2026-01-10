@@ -545,7 +545,15 @@ body {
     .faq-section h2 {
         font-size: 2rem;
     }
-}
+
+    /* Center social icons on tablet and enlarge slightly for touch */
+    .social-links { padding-top: 18px; }
+    .social-icons { justify-content: center; gap: 16px; }
+    .social-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+
+    /* Footer alignment improvements */
+    .footer-container { align-items: center; }
+} 
 
 @media (max-width: 480px) {
     .contact-container {
@@ -577,13 +585,23 @@ body {
         max-width: calc(100% - 20px);
     }
 
+    /* Social links: larger touch targets and centered */
+    .social-links { margin-top: 20px; padding-top: 16px; }
+    .social-icons { justify-content: center; gap: 18px; }
+    .social-icon { width: 56px; height: 56px; font-size: 1.3rem; }
+    .social-icon:hover { transform: translateY(-3px); }
+
+    /* Footer: stack and center, reduce bottom text size */
     .footer-container {
         flex-direction: column;
+        align-items: center;
     }
 
     .footer-section {
         margin: 10px 0;
         text-align: center;
     }
+
+    .footer-bottom { font-size: 12px; }
 }
 
