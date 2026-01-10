@@ -730,6 +730,29 @@
     }
 }
 
+/* Tighter layout for very small phones to avoid wrapping and preserve equal tiles */
+@media (max-width: 380px) {
+    .footer-content-modern { padding: 40px 14px 30px; gap: 14px; }
+
+    .social-links-modern {
+        grid-template-columns: repeat(2, 72px);
+        gap: 10px;
+        grid-auto-rows: 72px;
+        justify-content: center;
+    }
+
+    .social-links-modern .social-btn { width: 72px; height: 72px; border-radius: 10px; }
+    .social-links-modern .social-btn i { font-size: 1.4rem; }
+
+    .footer-bottom-content { padding: 0 14px; gap: 8px; }
+    .footer-bottom-content p { font-size: 0.85rem; }
+
+    .footer-logo h2 { font-size: 1.6rem; }
+    .footer-logo i { font-size: 2rem; }
+
+    .footer-legal a, .footer-bottom-content p { font-size: 0.82rem; }
+}
+
 /* Old Footer Styles (for other pages) */
 .footer {
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
