@@ -41,10 +41,10 @@ const Footer = () => {
                 <i className="fab fa-instagram"></i>
                 <span>Instagram</span>
               </a>
-+              <a href="https://www.linkedin.com/in/sachin-soni-82539036a/" target="_blank" rel="noopener noreferrer" className="social-btn linkedin" aria-label="LinkedIn">
-+                <i className="fab fa-linkedin-in"></i>
-+                <span>LinkedIn</span>
-+              </a>
+              <a href="https://www.linkedin.com/in/sachin-soni-82539036a/" target="_blank" rel="noopener noreferrer" className="social-btn linkedin" aria-label="LinkedIn">
+                <i className="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
               <a href="https://www.youtube.com/@Fineartclass12" target="_blank" rel="noopener noreferrer" className="social-btn youtube" aria-label="YouTube">
                 <i className="fab fa-youtube"></i>
                 <span>YouTube</span>

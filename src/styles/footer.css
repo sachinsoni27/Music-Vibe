@@ -105,15 +105,24 @@
 }
 
 .social-links-modern {
-    /* fixed tile grid and centered layout to match design */
+    /* responsive tile grid and centered layout to match design */
     display: grid;
-    grid-template-columns: repeat(3, 120px);
+    grid-template-columns: repeat(auto-fit, minmax(96px, 120px));
     gap: 16px;
-    grid-auto-rows: 90px; /* force equal-height rows */
+    grid-auto-rows: 96px; /* force equal-height rows */
     align-items: center;
     justify-content: center;
     justify-items: center;
-} 
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+  .social-links-modern {
+    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+    gap: 12px;
+    grid-auto-rows: 72px;
+  }
+}
 
 .social-links-modern .social-btn {
     width: 96px;
