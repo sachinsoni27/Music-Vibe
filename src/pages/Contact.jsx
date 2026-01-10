@@ -311,10 +311,12 @@ const Contact = () => {
         <div className="footer-container">
           <div className="footer-section social">
             <h3>FOLLOW US</h3>
-            <a href="#" onClick={(e) => e.preventDefault()}><i className="fab fa-facebook-f"></i></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><i className="fab fa-twitter"></i></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><i className="fab fa-instagram"></i></a>
-            <a href="#" onClick={(e) => e.preventDefault()}><i className="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="facebook" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/__sachin_soni__" target="_blank" rel="noopener noreferrer" className="twitter" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/__sachin_soni__?igsh=MXZ6aHRxdzhhcHhqMw%3D%3D" target="_blank" rel="noopener noreferrer" className="instagram" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/sachin-soni-82539036a/" target="_blank" rel="noopener noreferrer" className="linkedin" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@Fineartclass12" target="_blank" rel="noopener noreferrer" className="youtube" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
+            <a href="https://discord.com/users/859862454192701450" target="_blank" rel="noopener noreferrer" className="discord" aria-label="Discord"><i className="fab fa-discord"></i></a>
           </div>
 
           <div className="footer-section company">
