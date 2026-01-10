@@ -138,7 +138,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="footer-bottom-modern">
         <div className="footer-bottom-content">
-          <p>&copy; 2024 Music Vibe. All rights reserved. Made with <i className="fas fa-heart"></i> for music lovers</p>
+          <p>&copy; 2026 Music Vibe. All rights reserved. Made with <i className="fas fa-heart"></i> for music lovers</p>
           <div className="footer-legal">
             <a href="#">Privacy Policy</a>
             <span>•</span>
