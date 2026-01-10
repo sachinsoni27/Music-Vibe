@@ -1,4 +1,5 @@
 import '../styles/footer.css'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -65,6 +66,7 @@ const Footer = () => {
           <ul className="footer-links">
             <li><a href="/"><i className="fas fa-home"></i> Home</a></li>
             <li><a href="/trending"><i className="fas fa-fire"></i> Trending</a></li>
+            <li><Link to="/playlists"><i className="fas fa-list"></i> Playlists</Link></li>
             <li><a href="/contact"><i className="fas fa-envelope"></i> Contact</a></li>
             <li><a href="/feedback"><i className="fas fa-comment"></i> Feedback</a></li>
           </ul>
