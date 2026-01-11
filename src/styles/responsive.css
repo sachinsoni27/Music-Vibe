@@ -15,7 +15,27 @@
   --bp-laptop-min: 769px;
   --bp-laptop-max: 1024px;
   --bp-desktop-min: 1025px;
+  --gutter: 1rem;
+  --content-max: 1200px;
 }
+
+/* Mobile-first helpers (small, additive):
+   - Use clamp() for fluid typography
+   - Ensure images and iframes are responsive
+   - Provide a small utility container class for consistent padding
+*/
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+
+.container { width: 100%; padding: calc(var(--gutter) * 0.75); margin: 0 auto; max-width: var(--content-max); }
+
+:root {
+  --h1-min: 1.6rem; --h1-max: 3.6rem;
+}
+
+.h1-fluid { font-size: clamp(var(--h1-min), 4vw, var(--h1-max)); }
 
 /* -------------------- Mobile (<=480px) -------------------- */
 @media (max-width: 480px) {
@@ -43,63 +63,64 @@
     justify-content: center;
   }
 
-  /* Hero: stack and center */
+  /* Hero: stack and center; smaller hero to avoid vertical overflow */
   .hero-section {
     align-items: flex-start;
-    padding-top: 80px; /* keep space for fixed nav */
-    min-height: 70vh;
+    padding-top: 72px; /* keep space for fixed nav */
+    height: 70vh !important;
+    min-height: 320px !important;
   }
   .hero-content {
-    padding: 20px;
+    padding: 18px;
     max-width: 92%;
   }
-  .jamify-logo { width: 80px; height: 80px; }
-  .hero-title { font-size: 2rem; line-height: 1.05; }
-  .hero-subtitle { font-size: 1rem; }
-  .hero-stats { flex-direction: column; gap: 18px; margin: 30px 0; }
-  .stat-box { width: 100%; max-width: 420px; padding: 18px; }
+  .jamify-logo { width: 72px; height: 72px; }
+  .hero-title { font-size: 1.9rem; line-height: 1.05; }
+  .hero-subtitle { font-size: 0.95rem; }
+  .hero-stats { flex-direction: column; gap: 14px; margin: 24px 0; }
+  .stat-box { width: 100%; max-width: 100%; padding: 14px; min-width: 0; }
   .hero-buttons { flex-direction: column; gap: 12px; width: 100%; }
-  .btn-primary, .btn-secondary { width: 100%; padding: 14px 20px; font-size: 1rem; }
+  .btn-primary, .btn-secondary { width: 100%; padding: 12px 18px; font-size: 1rem; min-height:44px; }
 
   /* Sections spacing */
-  .section-container { padding: 40px 18px; }
-  .section-title { font-size: 1.5rem; }
+  .section-container { padding: 30px 14px; }
+  .section-title { font-size: 1.4rem; }
   .section-subtitle { font-size: 0.95rem; }
 
   /* Playlists: 1 card per row */
-  .playlist-grid { grid-template-columns: repeat(1, 1fr) !important; gap: 18px; }
-  .playlist-image { height: 150px !important; }
-  .playlist-info h3 { font-size: 1.1rem; }
+  .playlist-grid { grid-template-columns: repeat(1, 1fr) !important; gap: 16px; }
+  .playlist-image { height: 140px !important; }
+  .playlist-info h3 { font-size: 1.05rem; overflow-wrap: break-word; }
 
-  /* Artists & Songs: 2 columns where used */
-  .artist-sec { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .songs-sec { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  /* Artists & Songs: 1 column for comfortable taps */
+  .artist-sec { grid-template-columns: repeat(1, 1fr); gap: 14px; }
+  .songs-sec { grid-template-columns: repeat(1, 1fr); gap: 14px; padding: 8px; }
 
   /* Trending page: center & scale down headings */
-  .trending-hero-title, .trending-hero-title h1 { font-size: 2rem; text-align: center; }
+  .trending-hero-title, .trending-hero-title h1 { font-size: 1.9rem; text-align: center; }
   .trending-hero-subtitle { font-size: 0.95rem; text-align: center; }
-  .trending-hero { padding-top: 70px; }
+  .trending-hero { padding-top: 60px; height: 70vh !important; min-height: 320px !important; }
 
   /* - Additional trending tweaks for small screens: ensure songs list is comfortable to tap and reads well - */
-  .songs-sec { grid-template-columns: repeat(1, 1fr) !important; gap: 16px; padding: 10px; }
-  .songs-contain { min-height: 120px; display: flex; gap: 12px; align-items: center; }
-  .songs-card1 { min-height: 120px; width: 130px; background-size: cover; background-position: center; border-radius: 12px; }
-  .song-card-info { flex: 1; }
+  .songs-sec { grid-template-columns: repeat(1, 1fr) !important; gap: 12px; padding: 6px; }
+  .songs-contain { min-height: 110px; display: flex; gap: 12px; align-items: center; min-width: 0; }
+  .songs-card1 { min-height: 100px; width: 120px; background-size: cover; background-position: center; border-radius: 12px; flex-shrink:0; }
+  .song-card-info { flex: 1; overflow-wrap: break-word; }
   .song-card-info h3 { font-size: 1rem; }
-  .song-card-info p { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+  .song-card-info p { font-size: 0.9rem; color: rgba(255,255,255,0.85); }
   .song-rank-badge { top: 8px; left: 8px; padding: 6px 8px; font-size: 0.9rem; }
-  .play-overlay i { font-size: 2rem; }
+  .play-overlay i { font-size: 1.9rem; }
   .filter-buttons { padding: 0 6px; gap: 8px; }
-  .filter-btn { padding: 10px 14px; font-size: 0.95rem; }
+  .filter-btn { padding: 10px 14px; font-size: 0.95rem; min-height:44px; }
 
   /* Feedback / forms: full width, comfortable padding */
   .form-card, .contact-form-section .form-card, .auth-form { width: 100%; padding: 14px; }
   .form-group input, .form-group textarea, .form-group select { font-size: 1rem; padding: 12px; }
   .auth-container { max-width: 100% !important; padding: 0 12px; }
-  .auth-box { padding: 20px; }
-  .logo-section h1 { font-size: 1.4rem; }
+  .auth-box { padding: 18px; }
+  .logo-section h1 { font-size: 1.35rem; }
   .stars { font-size: 1.6rem; gap: 8px; }
-  .auth-btn { padding: 12px; font-size: 1rem; width: 100%; }
+  .auth-btn { padding: 12px; font-size: 1rem; width: 100%; min-height:44px; }
   .message-box { font-size: 0.95rem; }
 
   /* Contact page: stack columns */
@@ -107,11 +128,19 @@
   .contact-info-section { order: 2; }
   .contact-form-section { order: 1; }
 
+  /* Ensure small elements can shrink and break words */
+  .stat-item { min-width: 0; }
+  .songs-contain, .artist-contain, .playlist-card { min-width: 0; }
+  .section-title, h1, .song-card-info h3, .footer-bottom-content p { overflow-wrap: break-word; word-break: break-word; }
+
+  /* Ensure social and CTA buttons meet touch target requirements */
+  .auth-btn, .social-btn, .social-icon, .filter-btn { min-height:44px; min-width:44px; }
+
   /* Footer: center content & stack columns */
-  .footer-content-modern { grid-template-columns: 1fr !important; padding: 40px 18px !important; gap: 22px; }
+  .footer-content-modern { grid-template-columns: 1fr !important; padding: 36px 14px !important; gap: 18px; }
   .footer-brand, .footer-links-section, .footer-contact-section, .footer-newsletter { text-align: center; }
   .social-links-modern { justify-items: center; }
-  .footer-logo h2 { font-size: 1.6rem; }
+  .footer-logo h2 { font-size: 1.4rem; }
 }
 
 /* -------------------- Tablet (481px - 768px) -------------------- */
